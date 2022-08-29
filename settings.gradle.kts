@@ -7,4 +7,4 @@ pluginManagement {
 }
 
 rootProject.name = "Konnectivity"
-include(":shared")
+include(":konnectivity")

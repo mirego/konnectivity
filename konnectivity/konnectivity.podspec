@@ -1,24 +1,23 @@
 Pod::Spec.new do |spec|
-    spec.name                     = 'shared'
-    spec.version                  = '1.0'
+    spec.name                     = 'Konnectivity'
+    spec.version                  = '0.1.0'
     spec.homepage                 = 'Link to the Shared Module homepage'
     spec.source                   = { :http=> ''}
     spec.authors                  = ''
     spec.license                  = ''
     spec.summary                  = 'Some description for the Shared Module'
-    spec.vendored_frameworks      = 'build/cocoapods/framework/shared.framework'
+    spec.vendored_frameworks      = 'build/cocoapods/framework/Konnectivity.framework'
     spec.libraries                = 'c++'
     spec.ios.deployment_target = '14.1'
                 
-                
     spec.pod_target_xcconfig = {
-        'KOTLIN_PROJECT_PATH' => ':shared',
-        'PRODUCT_MODULE_NAME' => 'shared',
+        'KOTLIN_PROJECT_PATH' => ':konnectivity',
+        'PRODUCT_MODULE_NAME' => 'Konnectivity',
     }
                 
     spec.script_phases = [
         {
-            :name => 'Build shared',
+            :name => 'Build Konnectivity',
             :execution_position => :before_compile,
             :shell_path => '/bin/sh',
             :script => <<-SCRIPT
