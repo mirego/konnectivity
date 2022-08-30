@@ -9,6 +9,7 @@ Pod::Spec.new do |spec|
     spec.vendored_frameworks      = 'build/cocoapods/framework/Konnectivity.framework'
     spec.libraries                = 'c++'
     spec.ios.deployment_target = '14.1'
+    spec.dependency 'Reachability', '~> 3.2'
                 
     spec.pod_target_xcconfig = {
         'KOTLIN_PROJECT_PATH' => ':konnectivity',
