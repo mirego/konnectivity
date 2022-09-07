@@ -1,11 +1,11 @@
 Pod::Spec.new do |spec|
     spec.name                     = 'Konnectivity'
     spec.version                  = '0.1.0'
-    spec.homepage                 = 'Link to the Shared Module homepage'
+    spec.homepage                 = 'https://github.com/mirego/konnectivity'
     spec.source                   = { :http=> ''}
     spec.authors                  = ''
     spec.license                  = ''
-    spec.summary                  = 'Some description for the Shared Module'
+    spec.summary                  = 'A lightweight Kotlin Multiplatform library to monitor network state changes'
     spec.vendored_frameworks      = 'build/cocoapods/framework/Konnectivity.framework'
     spec.libraries                = 'c++'
     spec.ios.deployment_target = '14.1'

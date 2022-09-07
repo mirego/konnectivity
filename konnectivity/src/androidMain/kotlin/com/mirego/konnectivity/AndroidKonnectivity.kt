@@ -1,5 +1,3 @@
-@file:Suppress("unused")
-
 package com.mirego.konnectivity
 
 import android.content.Context
@@ -11,11 +9,7 @@ import android.os.Build
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.callbackFlow
 
-class AndroidKonnectivity private constructor(context: Context) : Konnectivity {
-
-    class Factory(private val context: Context) : Konnectivity.Factory {
-        override fun create(): Konnectivity = AndroidKonnectivity(context)
-    }
+internal class AndroidKonnectivity(context: Context) : Konnectivity {
 
     private val connectivityManager: ConnectivityManager by lazy {
         context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager

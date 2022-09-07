@@ -1,5 +1,3 @@
-@file:Suppress("unused")
-
 package com.mirego.konnectivity
 
 import cocoapods.Reachability.NetworkStatus
@@ -9,11 +7,7 @@ import cocoapods.Reachability.ReachableViaWiFi
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.callbackFlow
 
-class IosKonnectivity private constructor() : Konnectivity {
-
-    object Factory : Konnectivity.Factory {
-        override fun create(): Konnectivity = IosKonnectivity()
-    }
+internal class IosKonnectivity : Konnectivity {
 
     private val reachability: Reachability? by lazy {
         Reachability.reachabilityForInternetConnection()
