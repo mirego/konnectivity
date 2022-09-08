@@ -16,6 +16,9 @@ kotlin {
     }
     ios()
     iosSimulatorArm64()
+    js(IR) {
+        nodejs()
+    }
 
     cocoapods {
         name = "Konnectivity"
@@ -64,6 +67,13 @@ kotlin {
         val iosSimulatorArm64Test by getting
         val iosTest by getting {
             iosSimulatorArm64Test.dependsOn(this)
+        }
+
+        val jsMain by getting
+        val jsTest by getting {
+            dependencies {
+                implementation(kotlin("test-js"))
+            }
         }
     }
 }
