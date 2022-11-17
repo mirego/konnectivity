@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
     spec.name                     = 'Konnectivity'
-    spec.version                  = '0.1.0'
+    spec.version                  = '0.1.0-SNAPSHOT'
     spec.homepage                 = 'https://github.com/mirego/konnectivity'
     spec.source                   = { :http=> ''}
     spec.authors                  = ''

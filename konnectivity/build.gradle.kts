@@ -5,10 +5,10 @@ plugins {
     kotlin("native.cocoapods")
     id("com.android.library")
     id("maven-publish")
+    id("mirego.publish") version "1.0"
+    id("mirego.release") version "2.0"
 }
-
 group = "com.mirego"
-version = "0.1.0"
 
 kotlin {
     android {
@@ -79,9 +79,14 @@ kotlin {
 }
 
 android {
-    compileSdk = 32
+    compileSdk = 33
     defaultConfig {
         minSdk = 21
-        targetSdk = 32
+        targetSdk = 33
     }
+}
+
+release {
+    checkTasks = listOf("check")
+    buildTasks = listOf("publish")
 }
