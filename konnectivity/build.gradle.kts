@@ -21,20 +21,9 @@ kotlin {
     }
 
     cocoapods {
-        name = "Konnectivity"
-        version = "${getVersion()}"
-        summary = "A lightweight Kotlin Multiplatform library to monitor network state changes"
-        homepage = "https://github.com/mirego/konnectivity"
-        source =
-            "{ :git => 'https://github.com/mirego/konnectivity.git', :tag => '${getVersion()}' }"
         ios.deploymentTarget = "14.1"
-
-        framework {
-            baseName = "Konnectivity"
-            isStatic = true
-        }
-
         pod("Reachability", "~> 3.2")
+        noPodspec()
     }
 
     sourceSets {
@@ -54,7 +43,7 @@ kotlin {
                 implementation("androidx.startup:startup-runtime:1.1.1")
             }
         }
-        val androidTest by getting
+        val androidUnitTest by getting
 
         val iosX64Main by getting
         val iosArm64Main by getting
@@ -79,10 +68,12 @@ kotlin {
 }
 
 android {
-    compileSdk = 33
+    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+    namespace = "com.mirego.konnectivity"
+
     defaultConfig {
+        compileSdk = 33
         minSdk = 21
-        targetSdk = 33
     }
 }
 
