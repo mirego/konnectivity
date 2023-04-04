@@ -11,7 +11,6 @@
 ### Gradle
 
 Add the dependency to your common source-set dependencies:
-
 ```kotlin
 sourceSets {
     commonMain {
@@ -29,23 +28,37 @@ repositories {
 }
 ```
 
+Using the [Kotlin CocoaPods Plugin](https://kotlinlang.org/docs/native-cocoapods.html), add the [Reachability](https://cocoapods.org/pods/Reachability) pod dependency:
+```kotlin
+kotlin {
+    cocoapods {
+        pod("Reachability", "~> 3.2")
+    }
+} 
+```
+
 ## Usage
 
 ```kotlin
 import com.mirego.konnectivity.Konnectivity
 import com.mirego.konnectivity.NetworkState
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 val konnectivity = Konnectivity()
 
-konnectivity.networkState.onEach { networkState ->
-    when (networkState) {
-        is NetworkState.Reachable -> when {
-            networkState.metered -> println("You're online, but your connection is metered.")
-            else -> println("You're online!")
+konnectivity.networkState
+    .onEach { networkState ->
+        when (networkState) {
+            is NetworkState.Reachable -> when {
+                networkState.metered -> println("You're online, but your connection is metered.")
+                else -> println("You're online!")
+            }
+            NetworkState.Unreachable -> println("You're offline.")
         }
-        NetworkState.Unreachable -> println("You're offline.")
     }
-}.launchIn(MainScope())
+    .launchIn(MainScope())
 ```
 
 
