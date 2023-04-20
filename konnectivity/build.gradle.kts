@@ -11,6 +11,7 @@ plugins {
 group = "com.mirego"
 
 kotlin {
+    jvmToolchain(17)
     android {
         publishAllLibraryVariants()
     }
@@ -74,6 +75,11 @@ android {
     defaultConfig {
         compileSdk = 33
         minSdk = 21
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }
 
