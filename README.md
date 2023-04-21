@@ -2,7 +2,7 @@
   <img src="https://user-images.githubusercontent.com/5982196/205750835-4f657a00-1bca-4631-96d9-cc4acbfbd2eb.png" width="600" />
   <p><br />A lightweight Kotlin Multiplatform library to monitor network state changes</p>
   <a href="https://github.com/mirego/kmp-boilerplate/actions/workflows/ci.yml"><img src="https://github.com/mirego/kmp-boilerplate/actions/workflows/ci.yaml/badge.svg"/></a>
-  <a href="https://kotlinlang.org/"><img src="https://img.shields.io/badge/kotlin-1.8.10-blue.svg?logo=kotlin"/></a>
+  <a href="https://kotlinlang.org/"><img src="https://img.shields.io/badge/kotlin-1.8.20-blue.svg?logo=kotlin"/></a>
   <a href="https://opensource.org/licenses/BSD-3-Clause"><img src="https://img.shields.io/badge/License-BSD_3--Clause-blue.svg"/></a>
 </div>
 
@@ -11,12 +11,11 @@
 ### Gradle
 
 Add the dependency to your common source-set dependencies:
-
 ```kotlin
 sourceSets {
     commonMain {
         dependencies {
-             api("com.mirego:konnectivity:0.1.0")
+             api("com.mirego:konnectivity:0.2.0")
         }
     }
 }
@@ -29,23 +28,37 @@ repositories {
 }
 ```
 
+Using the [Kotlin CocoaPods Plugin](https://kotlinlang.org/docs/native-cocoapods.html), add the [Reachability](https://cocoapods.org/pods/Reachability) pod dependency:
+```kotlin
+kotlin {
+    cocoapods {
+        pod("Reachability", "~> 3.2")
+    }
+} 
+```
+
 ## Usage
 
 ```kotlin
 import com.mirego.konnectivity.Konnectivity
 import com.mirego.konnectivity.NetworkState
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 val konnectivity = Konnectivity()
 
-konnectivity.networkState.onEach { networkState ->
-    when (networkState) {
-        is NetworkState.Reachable -> when {
-            networkState.metered -> println("You're online, but your connection is metered.")
-            else -> println("You're online!")
+konnectivity.networkState
+    .onEach { networkState ->
+        when (networkState) {
+            is NetworkState.Reachable -> when {
+                networkState.metered -> println("You're online, but your connection is metered.")
+                else -> println("You're online!")
+            }
+            NetworkState.Unreachable -> println("You're offline.")
         }
-        NetworkState.Unreachable -> println("You're offline.")
     }
-}.launchIn(MainScope())
+    .launchIn(MainScope())
 ```
 
 
