@@ -2,7 +2,7 @@
   <img src="https://user-images.githubusercontent.com/5982196/205750835-4f657a00-1bca-4631-96d9-cc4acbfbd2eb.png" width="600" />
   <p><br />A lightweight Kotlin Multiplatform library to monitor network state changes</p>
   <a href="https://github.com/mirego/kmp-boilerplate/actions/workflows/ci.yml"><img src="https://github.com/mirego/kmp-boilerplate/actions/workflows/ci.yaml/badge.svg"/></a>
-  <a href="https://kotlinlang.org/"><img src="https://img.shields.io/badge/kotlin-1.8.20-blue.svg?logo=kotlin"/></a>
+  <a href="https://kotlinlang.org/"><img src="https://img.shields.io/badge/kotlin-1.9.10-blue.svg?logo=kotlin"/></a>
   <a href="https://opensource.org/licenses/BSD-3-Clause"><img src="https://img.shields.io/badge/License-BSD_3--Clause-blue.svg"/></a>
 </div>
 
