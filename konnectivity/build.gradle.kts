@@ -1,9 +1,7 @@
-@file:Suppress("UNUSED_VARIABLE", "UnstableApiUsage")
-
 plugins {
-    kotlin("multiplatform")
-    kotlin("native.cocoapods")
-    id("com.android.library")
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.kotlin.native.cocoapods)
+    alias(libs.plugins.android.library)
     id("maven-publish")
     id("mirego.publish") version "1.0"
     id("mirego.release") version "2.0"
@@ -12,7 +10,7 @@ group = "com.mirego"
 
 kotlin {
     jvmToolchain(17)
-    android {
+    androidTarget {
         publishAllLibraryVariants()
     }
     ios()
@@ -30,7 +28,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+                implementation(libs.kotlinx.coroutines.core)
             }
         }
         val commonTest by getting {
@@ -41,7 +39,7 @@ kotlin {
 
         val androidMain by getting {
             dependencies {
-                implementation("androidx.startup:startup-runtime:1.1.1")
+                implementation(libs.androidx.startup.runtime)
             }
         }
         val androidUnitTest by getting
@@ -73,7 +71,7 @@ android {
     namespace = "com.mirego.konnectivity"
 
     defaultConfig {
-        compileSdk = 33
+        compileSdk = 34
         minSdk = 21
     }
 
