@@ -1,5 +1,6 @@
 plugins {
-    id("com.android.library") version "8.0.0" apply false
-    kotlin("android") version "1.8.20" apply false
-    kotlin("multiplatform") version "1.8.20" apply false
+    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.kotlin.android) apply false
+    alias(libs.plugins.kotlin.multiplatform) apply false
+    alias(libs.plugins.kotlin.native.cocoapods) apply false
 }
