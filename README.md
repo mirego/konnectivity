@@ -15,7 +15,7 @@ Add the dependency to your common source-set dependencies:
 sourceSets {
     commonMain {
         dependencies {
-             api("com.mirego:konnectivity:0.2.0")
+             api("com.mirego:konnectivity:0.3.0")
         }
     }
 }
