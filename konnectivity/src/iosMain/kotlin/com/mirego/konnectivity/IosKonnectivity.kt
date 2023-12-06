@@ -4,9 +4,11 @@ import cocoapods.Reachability.NetworkStatus
 import cocoapods.Reachability.Reachability
 import cocoapods.Reachability.ReachableViaWWAN
 import cocoapods.Reachability.ReachableViaWiFi
+import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.callbackFlow
 
+@ExperimentalForeignApi
 internal class IosKonnectivity : Konnectivity {
 
     private val reachability: Reachability? by lazy {

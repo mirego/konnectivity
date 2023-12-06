@@ -13,7 +13,8 @@ kotlin {
     androidTarget {
         publishAllLibraryVariants()
     }
-    ios()
+    iosX64()
+    iosArm64()
     iosSimulatorArm64()
     js(IR) {
         nodejs()
@@ -26,39 +27,24 @@ kotlin {
     }
 
     sourceSets {
-        val commonMain by getting {
+        commonMain {
             dependencies {
                 implementation(libs.kotlinx.coroutines.core)
             }
         }
-        val commonTest by getting {
+        commonTest {
             dependencies {
                 implementation(kotlin("test"))
             }
         }
 
-        val androidMain by getting {
+        androidMain {
             dependencies {
                 implementation(libs.androidx.startup.runtime)
             }
         }
-        val androidUnitTest by getting
 
-        val iosX64Main by getting
-        val iosArm64Main by getting
-        val iosSimulatorArm64Main by getting
-        val iosMain by getting {
-            iosSimulatorArm64Main.dependsOn(this)
-        }
-        val iosX64Test by getting
-        val iosArm64Test by getting
-        val iosSimulatorArm64Test by getting
-        val iosTest by getting {
-            iosSimulatorArm64Test.dependsOn(this)
-        }
-
-        val jsMain by getting
-        val jsTest by getting {
+        jsTest {
             dependencies {
                 implementation(kotlin("test-js"))
             }
