@@ -6,6 +6,12 @@
   <a href="https://opensource.org/licenses/BSD-3-Clause"><img src="https://img.shields.io/badge/License-BSD_3--Clause-blue.svg"/></a>
 </div>
 
+## Preview
+
+This preview shows _Konnectivity_ running in a Web, iOS and Android app from our [sample](./sample).
+
+https://user-images.githubusercontent.com/5982196/233498817-240ccf01-63f3-4fe0-abd5-f538f1339343.mov
+
 ## Installation
 
 ### Gradle

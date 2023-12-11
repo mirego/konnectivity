@@ -10,3 +10,11 @@
 .cxx
 local.properties
 /kotlin-js-store
+/sample/build/
+/sample/shared/build/
+/sample/androidApp/build/
+/sample/kotlin-js-store
+
+*.pbxuser
+xcuserdata/
+Pods/
