@@ -6,7 +6,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.mirego.konnectivity.sample.Bootstrap
-import com.mirego.konnectivity.sample.ImageResource
+import com.mirego.konnectivity.sample.KonnectivityImageResource
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
@@ -28,10 +28,10 @@ class MainActivity : AppCompatActivity() {
             .launchIn(lifecycleScope)
     }
 
-    private val ImageResource.drawableRes: Int
+    private val KonnectivityImageResource.drawableRes: Int
         get() = when (this) {
-            ImageResource.NETWORK_STATE_REACHABLE -> R.drawable.cloud_check
-            ImageResource.NETWORK_STATE_REACHABLE_METERED -> R.drawable.cloud_alert
-            ImageResource.NETWORK_STATE_UNREACHABLE -> R.drawable.cloud_off_outline
+            KonnectivityImageResource.NETWORK_STATE_REACHABLE -> R.drawable.cloud_check
+            KonnectivityImageResource.NETWORK_STATE_REACHABLE_METERED -> R.drawable.cloud_alert
+            KonnectivityImageResource.NETWORK_STATE_UNREACHABLE -> R.drawable.cloud_off_outline
         }
 }

@@ -24,5 +24,14 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Konnectivity"
+rootProject.name = "konnectivity"
+
+val samplesEnabled = !extra.has("disable_samples")
+
 include(":konnectivity")
+
+if (samplesEnabled) {
+    include(":sample")
+    include(":sample:shared")
+    include(":sample:androidApp")
+}

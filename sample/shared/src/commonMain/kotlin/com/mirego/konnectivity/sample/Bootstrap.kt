@@ -17,7 +17,7 @@ object Bootstrap {
     val networkStateText: CFlow<String>
         get() = konnectivity.networkState.map(NetworkState::describe).wrap()
 
-    val networkStateImageResource: CFlow<ImageResource>
+    val networkStateImageResource: CFlow<KonnectivityImageResource>
         get() = konnectivity.networkState.map(NetworkState::asImageResource).wrap()
 }
 
@@ -30,16 +30,16 @@ fun NetworkState.describe(): String = when (this) {
 }
 
 
-private fun NetworkState.asImageResource(): ImageResource = when (this) {
+private fun NetworkState.asImageResource(): KonnectivityImageResource = when (this) {
     is NetworkState.Reachable -> when (metered) {
-        true -> ImageResource.NETWORK_STATE_REACHABLE_METERED
-        else -> ImageResource.NETWORK_STATE_REACHABLE
+        true -> KonnectivityImageResource.NETWORK_STATE_REACHABLE_METERED
+        else -> KonnectivityImageResource.NETWORK_STATE_REACHABLE
     }
-    NetworkState.Unreachable -> ImageResource.NETWORK_STATE_UNREACHABLE
+    NetworkState.Unreachable -> KonnectivityImageResource.NETWORK_STATE_UNREACHABLE
 }
 
 @JsExport
-enum class ImageResource {
+enum class KonnectivityImageResource {
     NETWORK_STATE_REACHABLE,
     NETWORK_STATE_REACHABLE_METERED,
     NETWORK_STATE_UNREACHABLE

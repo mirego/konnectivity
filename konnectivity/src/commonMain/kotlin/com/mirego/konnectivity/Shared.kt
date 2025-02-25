@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.shareIn
 
-fun Konnectivity.shared(
+public fun Konnectivity.shared(
     coroutineScope: CoroutineScope,
     shareStarted: SharingStarted = SharingStarted.WhileSubscribed(),
     replay: Int = 1

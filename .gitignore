@@ -2,8 +2,10 @@
 .gradle
 /local.properties
 .idea
+.kotlin
 .DS_Store
-/build
+build
+build/
 */build
 /captures
 .externalNativeBuild
@@ -11,6 +13,7 @@
 local.properties
 /kotlin-js-store
 /sample/build/
+/sample/iosApp/build/
 /sample/shared/build/
 /sample/androidApp/build/
 /sample/kotlin-js-store

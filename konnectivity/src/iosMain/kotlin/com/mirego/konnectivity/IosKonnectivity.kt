@@ -4,18 +4,17 @@ import cocoapods.Reachability.NetworkStatus
 import cocoapods.Reachability.Reachability
 import cocoapods.Reachability.ReachableViaWWAN
 import cocoapods.Reachability.ReachableViaWiFi
-import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 
-@ExperimentalForeignApi
-internal class IosKonnectivity : Konnectivity {
+public class IosKonnectivity : Konnectivity {
 
     private val reachability: Reachability? by lazy {
         Reachability.reachabilityForInternetConnection()
     }
 
-    override val networkState = callbackFlow {
+    override val networkState: Flow<NetworkState> = callbackFlow {
         val currentNetworkState = reachability?.currentReachabilityStatus().asNetworkState()
         trySend(currentNetworkState)
 

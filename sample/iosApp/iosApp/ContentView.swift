@@ -3,14 +3,14 @@ import shared
 
 struct ContentView: View {
 
-    @ObservedObject var networkStateImageResource = ObservableFlowWrapper<ImageResource>(Bootstrap().networkStateImageResource)
+    @ObservedObject var networkStateImageResource = ObservableFlowWrapper<KonnectivityImageResource>(Bootstrap().networkStateImageResource)
     @ObservedObject var networkStateText = ObservableFlowWrapper<NSString>(Bootstrap().networkStateText)
 
 	var body: some View {
         VStack(alignment: .center, spacing: 8) {
             if let imageResource = networkStateImageResource.value {
                 Image(systemName: imageResource.systemImageName)
-                    .renderingMode(.original)
+                    .renderingMode(.template)
                     .foregroundColor(.blue)
                     .font(.largeTitle)
             }
@@ -29,7 +29,7 @@ struct ContentView_Previews: PreviewProvider {
 	}
 }
 
-private extension ImageResource {
+private extension KonnectivityImageResource {
     var systemImageName: String {
         switch self {
         case .networkStateReachable:

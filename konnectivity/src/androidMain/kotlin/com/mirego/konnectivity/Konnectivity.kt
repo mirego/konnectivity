@@ -1,3 +1,3 @@
 package com.mirego.konnectivity
 
-actual fun Konnectivity(): Konnectivity = AndroidKonnectivity(appContext)
+public actual fun Konnectivity(): Konnectivity = AndroidKonnectivity(appContext)

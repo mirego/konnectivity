@@ -2,8 +2,8 @@ package com.mirego.konnectivity
 
 import kotlinx.coroutines.flow.Flow
 
-interface Konnectivity {
-    val networkState: Flow<NetworkState>
+public interface Konnectivity {
+    public val networkState: Flow<NetworkState>
 }
 
-expect fun Konnectivity(): Konnectivity
+public expect fun Konnectivity(): Konnectivity
