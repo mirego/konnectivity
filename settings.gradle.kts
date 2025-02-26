@@ -31,7 +31,9 @@ val samplesEnabled = !extra.has("disable_samples")
 include(":konnectivity")
 
 if (samplesEnabled) {
-    include(":sample")
-    include(":sample:shared")
-    include(":sample:androidApp")
+    include(
+        ":sample",
+        ":sample:shared",
+        ":sample:androidApp"
+    )
 }

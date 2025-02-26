@@ -7,9 +7,8 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinCocoapods)
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.mirego.publish)
     alias(libs.plugins.ktlint)
-//    id("mirego.release") version "2.0"
+    alias(libs.plugins.mirego.publish)
 }
 
 group = "com.mirego"
@@ -36,8 +35,10 @@ kotlin {
 
     sourceSets {
         all {
-            languageSettings.optIn("androidx.compose.material3.ExperimentalMaterial3Api")
-            languageSettings.optIn("kotlinx.cinterop.ExperimentalForeignApi")
+            languageSettings {
+                optIn("androidx.compose.material3.ExperimentalMaterial3Api")
+                optIn("kotlinx.cinterop.ExperimentalForeignApi")
+            }
         }
 
         commonMain {
@@ -51,6 +52,10 @@ kotlin {
 
         androidMain.dependencies {
             implementation(libs.startup.runtime)
+        }
+
+        compilerOptions {
+            freeCompilerArgs.add("-Xexpect-actual-classes")
         }
     }
 }
@@ -75,9 +80,3 @@ ktlint {
         exclude { element -> element.file.path.contains("generated/") }
     }
 }
-
-//
-// release {
-//    checkTasks = listOf("check")
-//    buildTasks = listOf("publish")
-// }

@@ -48,6 +48,10 @@ kotlin {
             implementation(libs.kotlinx.coroutines.core)
             api(project(":konnectivity"))
         }
+
+        compilerOptions {
+            freeCompilerArgs.add("-Xexpect-actual-classes")
+        }
     }
 }
 
