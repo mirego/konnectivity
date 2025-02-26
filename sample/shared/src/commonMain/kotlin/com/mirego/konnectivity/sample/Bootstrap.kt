@@ -21,28 +21,27 @@ object Bootstrap {
         get() = konnectivity.networkState.map(NetworkState::asImageResource).wrap()
 }
 
-fun NetworkState.describe(): String = when (this) {
-    is NetworkState.Reachable -> when (metered) {
-        true -> "You're online, but your connection is metered."
-        else -> "You're online!"
+fun NetworkState.describe(): String =
+    when (this) {
+        is NetworkState.Reachable -> when (metered) {
+            true -> "You're online, but your connection is metered."
+            else -> "You're online!"
+        }
+        NetworkState.Unreachable -> "You're offline."
     }
-    NetworkState.Unreachable -> "You're offline."
-}
 
-
-private fun NetworkState.asImageResource(): KonnectivityImageResource = when (this) {
-    is NetworkState.Reachable -> when (metered) {
-        true -> KonnectivityImageResource.NETWORK_STATE_REACHABLE_METERED
-        else -> KonnectivityImageResource.NETWORK_STATE_REACHABLE
+private fun NetworkState.asImageResource(): KonnectivityImageResource =
+    when (this) {
+        is NetworkState.Reachable -> when (metered) {
+            true -> KonnectivityImageResource.NETWORK_STATE_REACHABLE_METERED
+            else -> KonnectivityImageResource.NETWORK_STATE_REACHABLE
+        }
+        NetworkState.Unreachable -> KonnectivityImageResource.NETWORK_STATE_UNREACHABLE
     }
-    NetworkState.Unreachable -> KonnectivityImageResource.NETWORK_STATE_UNREACHABLE
-}
 
 @JsExport
 enum class KonnectivityImageResource {
     NETWORK_STATE_REACHABLE,
     NETWORK_STATE_REACHABLE_METERED,
-    NETWORK_STATE_UNREACHABLE
+    NETWORK_STATE_UNREACHABLE,
 }
-
-

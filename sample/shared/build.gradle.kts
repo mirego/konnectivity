@@ -45,8 +45,8 @@ kotlin {
             }
         }
         commonMain.dependencies {
-                implementation(libs.kotlinx.coroutines.core)
-                api(project(":konnectivity"))
+            implementation(libs.kotlinx.coroutines.core)
+            api(project(":konnectivity"))
         }
     }
 }
@@ -63,5 +63,11 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+    }
+}
+
+ktlint {
+    filter {
+        exclude { element -> element.file.path.contains("generated/") }
     }
 }

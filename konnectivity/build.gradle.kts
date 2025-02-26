@@ -19,7 +19,7 @@ kotlin {
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_17)
         }
-        publishLibraryVariants("release")
+        publishLibraryVariants("release", "debug")
     }
     iosX64()
     iosArm64()
@@ -29,7 +29,7 @@ kotlin {
     }
 
     cocoapods {
-        ios.deploymentTarget = "14.1"
+        ios.deploymentTarget = "15.0"
         pod("Reachability", "~> 3.2")
         noPodspec()
     }
@@ -70,14 +70,14 @@ android {
     }
 }
 
-//ktlint {
-//    filter {
-//        exclude { element -> element.file.path.contains("generated/") }
-//    }
-//}
+ktlint {
+    filter {
+        exclude { element -> element.file.path.contains("generated/") }
+    }
+}
 
 //
-//release {
+// release {
 //    checkTasks = listOf("check")
 //    buildTasks = listOf("publish")
-//}
+// }

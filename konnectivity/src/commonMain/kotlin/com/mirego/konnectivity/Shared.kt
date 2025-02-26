@@ -8,19 +8,20 @@ import kotlinx.coroutines.flow.shareIn
 public fun Konnectivity.shared(
     coroutineScope: CoroutineScope,
     shareStarted: SharingStarted = SharingStarted.WhileSubscribed(),
-    replay: Int = 1
-): Konnectivity = SharedKonnectivity(
-    this,
-    coroutineScope,
-    shareStarted,
-    replay
-)
+    replay: Int = 1,
+): Konnectivity =
+    SharedKonnectivity(
+        this,
+        coroutineScope,
+        shareStarted,
+        replay,
+    )
 
 private class SharedKonnectivity(
     konnectivity: Konnectivity,
     coroutineScope: CoroutineScope,
     shareStarted: SharingStarted,
-    replay: Int
+    replay: Int,
 ) : Konnectivity {
     override val networkState = konnectivity.networkState
         .distinctUntilChanged()

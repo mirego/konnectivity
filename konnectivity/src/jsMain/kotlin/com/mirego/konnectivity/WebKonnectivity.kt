@@ -7,7 +7,6 @@ import kotlinx.coroutines.flow.callbackFlow
 import org.w3c.dom.events.Event
 
 public class WebKonnectivity : Konnectivity {
-
     override val networkState: Flow<NetworkState> = callbackFlow {
         val currentNetworkState = getCurrentNetworkState()
         trySend(currentNetworkState)
@@ -26,8 +25,9 @@ public class WebKonnectivity : Konnectivity {
         }
     }
 
-    private fun getCurrentNetworkState() = when {
-        window.navigator.onLine -> NetworkState.Reachable(metered = null)
-        else -> NetworkState.Unreachable
-    }
+    private fun getCurrentNetworkState() =
+        when {
+            window.navigator.onLine -> NetworkState.Reachable(metered = null)
+            else -> NetworkState.Unreachable
+        }
 }

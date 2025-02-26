@@ -14,9 +14,9 @@ fun interface Closeable {
 
 actual class CFlow<T : Any?> internal constructor(
     private val origin: Flow<T>,
-    private val dispatcher: CoroutineDispatcher = Dispatchers.Main // Immediate dispatching is not supported on Native
+    // Immediate dispatching is not supported on Native
+    private val dispatcher: CoroutineDispatcher = Dispatchers.Main,
 ) : Flow<T> by origin {
-
     fun watch(block: (T) -> Unit): Closeable {
         val job = Job()
         val scope = CoroutineScope(dispatcher + job)

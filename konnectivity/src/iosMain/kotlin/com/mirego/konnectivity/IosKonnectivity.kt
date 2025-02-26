@@ -9,7 +9,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 
 public class IosKonnectivity : Konnectivity {
-
     private val reachability: Reachability? by lazy {
         Reachability.reachabilityForInternetConnection()
     }
@@ -33,9 +32,10 @@ public class IosKonnectivity : Konnectivity {
         }
     }
 
-    private fun NetworkStatus?.asNetworkState() = when (this) {
-        ReachableViaWWAN -> NetworkState.Reachable(true)
-        ReachableViaWiFi -> NetworkState.Reachable(false)
-        else -> NetworkState.Unreachable
-    }
+    private fun NetworkStatus?.asNetworkState() =
+        when (this) {
+            ReachableViaWWAN -> NetworkState.Reachable(true)
+            ReachableViaWiFi -> NetworkState.Reachable(false)
+            else -> NetworkState.Unreachable
+        }
 }

@@ -3,19 +3,22 @@ agp = "8.8.0"
 android-compileSdk = "35"
 android-minSdk = "21"
 android-targetSdk = "35"
-junit = "4.13.2"
+appcompat = "1.7.0"
+constraintlayout = "2.2.1"
 kotlinx-coroutines = "1.8.1"
 kotlin = "2.1.10"
-ktlint = "12.1.0"
+ktlint = "12.1.2"
+lifecycleRuntimeKtx = "2.8.7"
+material = "1.12.0"
 startupRuntime = "1.2.0"
 mirego-publish = "1.5"
 
 [libraries]
-#androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
-#androidx-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
-#androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
-
+appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
+lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+material = { module = "com.google.android.material:material", version.ref = "material" }
 startup-runtime = { group = "androidx.startup", name = "startup-runtime", version.ref = "startupRuntime" }
 
 [plugins]

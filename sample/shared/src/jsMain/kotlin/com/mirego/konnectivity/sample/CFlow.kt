@@ -17,9 +17,8 @@ fun interface Closeable {
 @Suppress("NON_EXPORTABLE_TYPE")
 actual class CFlow<T : Any?> internal constructor(
     private val origin: Flow<T>,
-    private val dispatcher: CoroutineDispatcher = Dispatchers.Main.immediate
+    private val dispatcher: CoroutineDispatcher = Dispatchers.Main.immediate,
 ) : Flow<T> by origin {
-
     fun watch(block: (T) -> Unit): Closeable {
         val job = Job()
         val scope = CoroutineScope(dispatcher + job)
