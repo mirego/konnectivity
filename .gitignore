@@ -17,3 +17,5 @@ local.properties
 *.pbxuser
 xcuserdata/
 Pods/
+
+sample/shared/
