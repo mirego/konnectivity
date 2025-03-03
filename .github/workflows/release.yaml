@@ -4,26 +4,39 @@ on: workflow_dispatch
 
 jobs:
   release:
+    name: Release library
     runs-on: macos-latest
     continue-on-error: false
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0 # Require whole history to compute the incremental build number
 
-      - uses: actions/setup-java@v3
+      - name: Gradle Cache
+        uses: actions/cache@v3
         with:
-          distribution: temurin
-          java-version: 17
+          key: gradle-${{ hashFiles('**/gradle.properties') }}
+          restore-keys: gradle-
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
 
-      - uses: actions/cache@v3
+      - name: Kotlin Native Cache
+        uses: actions/cache@v3
         with:
           key: kotlin-native-${{ hashFiles('gradle.properties') }}
           path: ~/.konan
 
-      - uses: gradle/gradle-build-action@v2
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Release with gradle
         env:
           MAVEN_AWS_KEY: ${{ secrets.MIREGO_MAVEN_AWS_ACCESS_KEY_ID }}
           MAVEN_AWS_SECRET: ${{ secrets.MIREGO_MAVEN_AWS_SECRET_ACCESS_KEY }}
-        with:
-          arguments: check release -i -s
+        run: |
+          ./gradlew check publish -Pdisable_samples -s

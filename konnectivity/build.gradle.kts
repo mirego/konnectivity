@@ -1,17 +1,24 @@
+@file:Suppress("UNUSED_VARIABLE", "UnstableApiUsage")
+
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
+
 plugins {
-    alias(libs.plugins.kotlin.multiplatform)
-    alias(libs.plugins.kotlin.native.cocoapods)
-    alias(libs.plugins.android.library)
-    id("maven-publish")
-    id("mirego.publish") version "1.0"
-    id("mirego.release") version "2.0"
+    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kotlinCocoapods)
+    alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.ktlint)
+    alias(libs.plugins.mirego.publish)
 }
+
 group = "com.mirego"
 
 kotlin {
-    jvmToolchain(17)
     androidTarget {
-        publishAllLibraryVariants()
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_17)
+        }
+        publishLibraryVariants("release", "debug")
     }
     iosX64()
     iosArm64()
@@ -21,33 +28,34 @@ kotlin {
     }
 
     cocoapods {
-        ios.deploymentTarget = "14.1"
+        ios.deploymentTarget = "15.0"
         pod("Reachability", "~> 3.2")
         noPodspec()
     }
 
     sourceSets {
+        all {
+            languageSettings {
+                optIn("androidx.compose.material3.ExperimentalMaterial3Api")
+                optIn("kotlinx.cinterop.ExperimentalForeignApi")
+            }
+        }
+
         commonMain {
             dependencies {
                 implementation(libs.kotlinx.coroutines.core)
             }
-        }
-        commonTest {
-            dependencies {
-                implementation(kotlin("test"))
+            kotlin {
+                explicitApi()
             }
         }
 
-        androidMain {
-            dependencies {
-                implementation(libs.androidx.startup.runtime)
-            }
+        androidMain.dependencies {
+            implementation(libs.startup.runtime)
         }
 
-        jsTest {
-            dependencies {
-                implementation(kotlin("test-js"))
-            }
+        compilerOptions {
+            freeCompilerArgs.add("-Xexpect-actual-classes")
         }
     }
 }
@@ -57,8 +65,8 @@ android {
     namespace = "com.mirego.konnectivity"
 
     defaultConfig {
-        compileSdk = 34
-        minSdk = 21
+        compileSdk = libs.versions.android.compileSdk.get().toInt()
+        minSdk = libs.versions.android.minSdk.get().toInt()
     }
 
     compileOptions {
@@ -67,7 +75,8 @@ android {
     }
 }
 
-release {
-    checkTasks = listOf("check")
-    buildTasks = listOf("publish")
+ktlint {
+    filter {
+        exclude { element -> element.file.path.contains("generated/") }
+    }
 }

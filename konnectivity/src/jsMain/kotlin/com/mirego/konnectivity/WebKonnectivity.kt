@@ -2,12 +2,12 @@ package com.mirego.konnectivity
 
 import kotlinx.browser.window
 import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import org.w3c.dom.events.Event
 
-internal class WebKonnectivity : Konnectivity {
-
-    override val networkState = callbackFlow {
+public class WebKonnectivity : Konnectivity {
+    override val networkState: Flow<NetworkState> = callbackFlow {
         val currentNetworkState = getCurrentNetworkState()
         trySend(currentNetworkState)
 
@@ -25,8 +25,9 @@ internal class WebKonnectivity : Konnectivity {
         }
     }
 
-    private fun getCurrentNetworkState() = when {
-        window.navigator.onLine -> NetworkState.Reachable(metered = null)
-        else -> NetworkState.Unreachable
-    }
+    private fun getCurrentNetworkState() =
+        when {
+            window.navigator.onLine -> NetworkState.Reachable(metered = null)
+            else -> NetworkState.Unreachable
+        }
 }

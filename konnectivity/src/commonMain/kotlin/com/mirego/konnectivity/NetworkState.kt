@@ -1,9 +1,9 @@
 package com.mirego.konnectivity
 
-sealed class NetworkState {
-    data class Reachable(
-        val metered: Boolean?
+public sealed class NetworkState {
+    public data class Reachable(
+        val metered: Boolean?,
     ) : NetworkState()
 
-    object Unreachable : NetworkState()
+    public object Unreachable : NetworkState()
 }

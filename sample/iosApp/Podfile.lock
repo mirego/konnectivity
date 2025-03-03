@@ -1,0 +1,23 @@
+PODS:
+  - Reachability (3.7.6)
+  - shared (1.0):
+    - Reachability (~> 3.7)
+
+DEPENDENCIES:
+  - shared (from `../shared`)
+
+SPEC REPOS:
+  trunk:
+    - Reachability
+
+EXTERNAL SOURCES:
+  shared:
+    :path: "../shared"
+
+SPEC CHECKSUMS:
+  Reachability: fd0ecd23705e2599e4cceeb943222ae02296cbc6
+  shared: d147b68ccc891508263904b4520267708234d861
+
+PODFILE CHECKSUM: bcc6405526ab56ae8c9d64523b12ff8cf81ba946
+
+COCOAPODS: 1.16.2

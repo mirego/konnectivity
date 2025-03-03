@@ -10,7 +10,6 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.callbackFlow
 
 internal class AndroidKonnectivity(context: Context) : Konnectivity {
-
     private val connectivityManager: ConnectivityManager by lazy {
         context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     }
@@ -42,7 +41,7 @@ internal class AndroidKonnectivity(context: Context) : Konnectivity {
 
             override fun onCapabilitiesChanged(
                 network: Network,
-                networkCapabilities: NetworkCapabilities
+                networkCapabilities: NetworkCapabilities,
             ) {
                 super.onCapabilitiesChanged(network, networkCapabilities)
 
@@ -69,7 +68,7 @@ internal class AndroidKonnectivity(context: Context) : Konnectivity {
     private fun ConnectivityManager.getCurrentNetworkState(): NetworkState {
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            val connected = activeNetworkInfo?.isConnected ?: false
+            val connected = activeNetworkInfo?.isConnected == true
             val metered = isActiveNetworkMetered
 
             return when {

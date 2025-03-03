@@ -1,3 +1,3 @@
 package com.mirego.konnectivity
 
-actual fun Konnectivity(): Konnectivity = WebKonnectivity()
+public actual fun Konnectivity(): Konnectivity = WebKonnectivity()
